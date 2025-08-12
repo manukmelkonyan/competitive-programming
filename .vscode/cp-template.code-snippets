@@ -1,0 +1,23 @@
+{
+	"CSES: C++ Problem Template": {
+	  "scope": "cpp",
+	  "prefix": ["cses", "cp"],
+	  "description": "CSES problem stub with fast I/O and metadata header",
+	  "body": [
+		"#include <bits/stdc++.h>",
+		"using namespace std;",
+		"",
+		"// ${1:Problem Name}",
+		"// https://cses.fi/problemset/task/${2:1071}",
+		"",
+		"int main() {",
+		"    ios_base::sync_with_stdio(false);",
+		"    cin.tie(nullptr);",
+		"",
+		"    ${0}",
+		"",
+		"    return 0;",
+		"}"
+	  ]
+	}
+  }

@@ -1,0 +1,30 @@
+{
+    "tasks": [
+        {
+            "label": "cses-template",
+            "type": "shell",
+            "command": "/bin/zsh",
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "args": [
+                "-c",
+                "set -e\nset -u\nset -o pipefail\nNAME=\"${input:csesName}\"\nID=\"${input:csesId}\"\nlower=${NAME:l}\nkebab=$(sed -E \"s/[^a-z0-9]+/-/g; s/^-+|-+$//g\" <<< \"$lower\")\nfile=\"${ID}-${kebab}.cpp\"\nif [ -e \"$file\" ]; then echo \"File '$file' already exists. Aborting.\"; exit 1; fi\ncat > \"$file\" <<EOF\n#include <bits/stdc++.h>\nusing namespace std;\n\n// $NAME\n// https://cses.fi/problemset/task/$ID\n\nint main() {\n    ios_base::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    return 0;\n}\nEOF\necho \"Created $file\"\n"
+            ],
+            "problemMatcher": []
+        }
+    ],
+    "version": "2.0.0",
+    "inputs": [
+        {
+            "id": "csesName",
+            "type": "promptString",
+            "description": "Problem name (e.g., Number Spiral)"
+        },
+        {
+            "id": "csesId",
+            "type": "promptString",
+            "description": "Problem ID (e.g., 1071)"
+        }
+    ]
+}
