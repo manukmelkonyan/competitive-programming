@@ -21,21 +21,22 @@ int main() {
         nums[i] = (a * nums[i - 1] + b) % c;
     }
 
-    deque<pair<ll, int>> min_queue;
-    for(int i = 0; i < k; ++i) {
-        while (min_queue.size() > 0 && min_queue.back().first >= nums[i]) min_queue.pop_back();
-        min_queue.push_back({ nums[i], i });
-    }
+    deque<int> min_queue;
 
-    ll result = min_queue.front().first;
+    ll result = 0;
+    for(int i = 0; i < n; ++i) {
+        while (!min_queue.empty() && nums[min_queue.back()] >= nums[i])
+            min_queue.pop_back();
 
-    for(int i = k; i < n; ++i) {
-        while (min_queue.size() > 0 && min_queue.back().first >= nums[i]) min_queue.pop_back();
-        if (min_queue.size() > 0 && min_queue.front().second <= i - k) {
+        min_queue.push_back(i);
+
+        if (min_queue.front() <= i - k)
             min_queue.pop_front();
+
+
+        if (i >= k - 1) {
+            result ^= nums[min_queue.front()];
         }
-        min_queue.push_back({ nums[i], i });
-        result ^= min_queue.front().first;
     }
 
     cout << result << "\n";

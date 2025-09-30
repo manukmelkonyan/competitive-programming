@@ -22,14 +22,14 @@ int main() {
     }
 
     ll current_sum = 0;
-    for(int i = 0; i < k; ++i) {
-        current_sum += nums[i];
-    }
-    ll result = current_sum;
+    ll result = 0;
     
-    for(int i = k; i < n; ++i) {
-        current_sum = current_sum - nums[i - k] + nums[i];
-        result ^= current_sum;
+    for(int i = 0; i < n; ++i) {
+        current_sum += nums[i];
+        if (i >= k - 1) {
+            result ^= current_sum;
+            current_sum -= nums[i - k + 1];
+        }
     }
     cout << result << "\n";
 
